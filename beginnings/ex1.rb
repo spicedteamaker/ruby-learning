@@ -312,3 +312,76 @@ out_file.close
 =end
 
 # ex 18 names, variables, code, functions
+=begin
+# *args means there can be an indefinite amount of arguments
+# You can even create def print_two(arg1, arg2, *args)
+# which also says there must be 2 arguments, and then whatever else comes after
+# can be inspected in a list form
+def print_two(*args)
+	arg1, arg2 = args
+	puts "arg1: #{arg1}, arg2: #{arg2}"
+end
+
+def print_two_again(arg1, arg2,*args)
+	puts "arg1: #{arg1}, arg2: #{arg2}"
+	puts "Anything else?: #{args}"
+end
+
+def print_one(arg1)
+	puts "arg1: #{arg1}"
+end
+
+def print_none()
+	puts "I got nothin'"
+end
+
+print_two("beep", "boop")
+print_two_again("beep", "boop", "nyaaa", "blah")
+print_one("beep")
+#parenthesis can actually be omitted when there are no arguments
+print_none
+=end
+
+# ex 19 more variables and functions
+=begin
+def cheese_and_crackers(cheese_count, boxes_of_crackers)
+	puts "You have #{cheese_count} cheeses"
+	puts "you have #{boxes_of_crackers} boxes of crackers"
+	puts "That's enough for a party!"
+end
+
+puts "some direct arguments"
+cheese_and_crackers(10,20)
+
+puts "or some variables!"
+cheese = 10
+crackers = 50
+cheese_and_crackers(cheese, crackers)
+=end
+
+# ex 20 functions and files
+=begin
+input_file = ARGV.first
+def print_all(f)
+	puts f.read
+end
+
+def rewind(f)
+	f.seek(0)
+end
+
+def print_a_line(line_count, f)
+	puts "#{line_count}. #{f.gets.chomp}"
+end
+
+current_file = open(input_file)
+puts "print the whole file: \n"
+print_all(current_file)
+puts "And rewind"
+#This makes ruby jump to a location in the file
+rewind(current_file)
+puts "And three lines"
+print_a_line(1, current_file)
+print_a_line(2, current_file)
+print_a_line(3, current_file)
+=end
