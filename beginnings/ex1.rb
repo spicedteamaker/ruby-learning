@@ -110,21 +110,6 @@ puts "its fleece was white as #{'snow'}"
 puts "and everywhere that mary went"
 puts "." * 10
 
-end1 = "C"
-end2 = "h"
-end3 = "e"
-end4 = "e"
-end5 = "s"
-end6 = "e"
-end7 = "B"
-end8 = "u"
-end9 = "r"
-end10 = "g"
-end11 = "e"
-end12 = "r"
-
-puts end1 + end2 + end3 + end4 + end5 + end6
-puts end7 + end8 + end9 + end10 + end11 + end12
 =end
 
 # ex 8
@@ -384,4 +369,195 @@ puts "And three lines"
 print_a_line(1, current_file)
 print_a_line(2, current_file)
 print_a_line(3, current_file)
+=end
+
+# ex 21 function returns
+# Ruby happens to implicitly return whatever the last expression calculaets
+# Using return is explicit
+=begin
+def add(a, b)
+	a + b
+end
+
+age = add(10, 12)
+puts "Age: #{age}"
+=end
+
+# ex 24 practice
+=begin
+puts "Let's practice stuff!"
+puts "You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabes"
+
+# Heredocs are multiline strings, they begin with << and a keyword (anything you want)
+# and end with the keyword. In this case, we use stuffedTea, in all caps
+some_stuff = <<STUFFEDTEA
+beep boop
+i'm a robot
+I don't like humans
+beep boop
+STUFFEDTEA
+
+puts "----------"
+puts some_stuff
+puts "----------"
+
+
+five = 10 - 2 + 3 - 6
+puts "This should output five: #{five}"
+
+def sooper_sekrit(ingredient_count)
+	spiciness = ingredient_count * 100
+	level = spiciness / 2
+	deliciousness = spiciness + level
+	return spiciness, level, deliciousness
+end
+
+amount = 50
+puts sooper_sekrit(amount)
+puts "Who cares about the amount: #{sooper_sekrit(75)}"
+# returning multiple objects actually returns an array
+puts "What about the second item?: #{sooper_sekrit(75)[1]}"
+
+# we can also use C style variables in strings
+puts "the spiciness is %d, the level is %d, and finally we have a deliciousness of %d" % sooper_sekrit(amount)
+=end
+
+# ex29 ifs and conditionals
+
+=begin
+people = 20
+cats = 30
+dogs = 15
+
+if people < cats
+	puts "Too many cats, the world is doomed!"
+end
+
+if people > cats
+	puts "Not many cats, the world is saved!"
+end
+
+if people < dogs
+	puts "The world is dead! So many dogs!"
+end
+
+if people > dogs
+	"puts the world is dry! people are greater!"
+end
+
+dogs += 5
+if people >= dogs
+	puts "people are greater than or equal to dogs"
+end
+
+if people <= dogs
+	puts "people are <= dogs"
+end
+
+if people == dogs
+	puts "people == dogs"
+end
+
+=end
+
+
+# ex30 else and if
+
+=begin
+people = 30
+cars = 50
+trucks = 20
+
+if cars > people
+	puts "there are more cars than people, make more people!"
+elsif people < cars
+	puts "there are more people than cars. Think about making more cars!"
+elsif people == cars
+	puts "we've reached equilibrium!"
+else
+	puts "something is wrong!"
+end
+
+if trucks > people
+	puts "this is weird! why are there more trucks than people?"
+else
+	puts "all is well in the world. More people, less trucks"
+end
+
+if cars > people || trucks > people
+	puts "there are more cars or trucks than people. Build more people!!!!"
+end
+=end
+
+# ex31 decisions
+=begin
+puts "You enter a dark room. A door is on your left, covered in webs. A door on your right has grass peaking out of the cracks."
+puts "Which door will you enter?"
+print "> "
+choice = $stdin.gets.chomp
+
+if choice == "left"
+	puts "You walk in the left door and you're covered in spiders!"
+elsif choice == "right"
+	puts "You walk in the right door and you witness a sunrise!"
+else
+	puts "You've entered something incorrect. Unfortunately the game ends when that happens"
+end
+=end
+
+# ex32 loops and arrays
+=begin
+the_count = [1,2,3,4,5]
+fruits = ["apples","oranges","pears","apricots"]
+change = [1, "pennies", 2, "dimes", 3, "quarters"]
+
+# for-each loop, do NOT write it this way.
+for number in the_count
+	puts "counting...#{number}"
+end
+
+
+# this is another for-each loop
+# this is the preferred ways to write them in ruby
+fruits.each do |fruit|
+	puts "listing fruits: #{fruit}"
+end
+
+# Another way to write it ruby-style
+change.each {|i| puts "listing out change: #{i}"}
+
+# let's fix our original the_count to conform to ruby
+puts "Better ruby-style"
+the_count.each do |i|
+	puts "counting...#{i}"
+end
+
+# building array, starting empty
+elements = []
+
+# add to the array
+# The (0..5) is a range operator
+(0..5).each do |i|
+	puts "Adding #{i} to the list"
+	# push to the end of the list
+	elements.push(i)
+end
+
+elements.each{|i| puts "element is: #{i}"}
+
+# and a two-dimensional array!
+two_d = [[1,2,3,4,5], [4,3,2,1,0]]
+puts "going through our 2D array"
+two_d.each {|i| puts "counting: #{i}"}
+
+# now go through them individually
+two_d.each do |i|
+	i.each do |y|
+		puts "counting: #{y}"
+	end
+end
+
+# or another format
+two_d.each {|i| i.each {|y| puts "second way: #{y}"}}
+
 =end
