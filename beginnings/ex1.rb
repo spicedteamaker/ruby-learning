@@ -666,7 +666,7 @@ puts "$ - Global scope - $stdin"
 =end
 
 # ex38 more with arrays
-
+=begin
 ten_things = "Apples Oranges Crows Telephone Light Sugar"
 
 puts "Wait, there are not 10 things in there. Fixing..."
@@ -686,3 +686,107 @@ puts stuff[-1] #what?
 puts stuff.pop()
 puts stuff.join(' ')
 puts stuff[3..5].join("#")
+=end
+
+# ex 39 hashes
+=begin
+things = ['a', 'b', 'c', 'd']
+puts things[1]
+
+things[1] = 'z'
+puts things
+# notice the usual replacing an element
+# Hashes on the other hand, use any type as an index, rather than an integer like a normal array
+# pretty standard data management
+# this is a hash
+stuff = {'name' => 'glopnik', 'age' => 27, 'height' => (60*3)}
+puts stuff['name']
+puts stuff['height']
+
+# and we can of course add to our hashes
+stuff["city"] = "new jersey"
+puts stuff
+
+# you have a lot of options with key types. Instead of strings, you can use an integer
+stuff[36] = "am I a number?!"
+puts stuff[36]
+
+# then some usual hash methods
+stuff.delete(36)
+stuff.delete("city")
+puts stuff
+
+# let's do some fun things with hashes
+
+person_hair_color = {
+	"john" => "brown",
+	"lisa" => "blonde",
+	"steve" => "black",
+	"marry" => "orange",
+}
+
+hair_popularity_percentage = {
+	"brown" => 50,
+	"blonde" => 17,
+	"black" => 23,
+	"orange" => 10,
+}
+
+puts "John's popularity is #{hair_popularity_percentage[person_hair_color["john"]]}%"
+puts "Marry's populatrity is #{hair_popularity_percentage[person_hair_color["marry"]]}%"
+
+person_hair_color.each do |name, hair_colour|
+	puts "#{name} has #{hair_colour} hair"
+end
+puts "=-=" * 10
+person_hair_color.each do |name, hair_color|
+	puts "#{name} has #{hair_color} hair"
+	puts "#{hair_color} is #{hair_popularity_percentage[hair_color]}% popular"
+end
+
+# Checking if something exists in a hash (or is not nil in general)
+
+green = person_hair_color["green"]
+if !green
+	puts "No data on green hair colors"
+end
+
+# And we can set default values of objects that are of 'nil' value
+green_popularity = hair_popularity_percentage["green"]
+puts green_popularity # >>> nil, outputs as whitespace
+# set
+# object ||= smth
+# when you want to return smth if object == nil
+green_popularity ||= "Doesn't exist"
+puts green_popularity # >>> Doesn't exist
+=end
+
+# ex 40 modules, classes, and objects in Ruby
+=begin
+puts "=-=" * 10
+puts "Ruby Module"
+# let's go ahead and import an external MODULE
+require "./fruits_module.rb"
+# accessing methods
+Fruits.put_apple() # >>>It's an apple!
+# accessing global variables in fruits.rb
+puts Fruits::WORST_FRUIT # >>> mango
+
+# Now, there is a key difference between a module and a class. A module
+# is like a library of functions, it doesn't have much to do with objects or instantiation
+# Use modules when you just have other functions that you'd like to use.
+# With classes, they're like classes in other languages, all about objects!
+
+puts "=-=" * 10
+puts "Ruby Class"
+
+# Let's go ahead and import a ruby CLASS
+require "./FruitsClass.rb"
+new_fruits = FruitsClass.new()
+puts new_fruits.best_fruit # >>> nil, we didn't pass the argument defined in fruits_class
+
+# if we have an initializer that takes an argument, we can add them:
+more_fruits = FruitsClass.new({"best_fruit" => "banana"})
+# Now let's grab the variable
+puts more_fruits.best_fruit # >>> banana
+=end
