@@ -561,3 +561,128 @@ end
 two_d.each {|i| i.each {|y| puts "second way: #{y}"}}
 
 =end
+
+# ex33 white loops
+=begin
+i = 0
+numbers = []
+
+while i < 12
+	numbers.push(i)
+	puts "numbers: #{numbers}"
+	# the increment i++ does NOT exist in ruby. everything in ruby is an object
+	i+=1
+end
+i = 0
+numbers = []
+
+# remember, we can just do it like so as well:
+(0..11).each {|i| numbers.push(i)}
+puts numbers
+puts "#{numbers}"
+=end
+
+# ex34 accessing elements in arrays
+=begin
+animals = ["bear", "owl", "hawk", "cheetah", "dog", "cat"]
+puts "#{animals}"
+owl = animals[1]
+puts owl
+animals[1] = "chicken"
+puts "#{animals}"
+=end
+
+# ex35 branches and functions
+=begin
+def room
+	puts "In this room lies a desk and a vase. Which do you inspect?"
+	print "> "
+	choice = $stdin.gets
+
+	#
+	if choice.include?("desk") && choice.include?("vase")
+		die("unable to understand!")
+	elsif choice.include?("desk")
+		puts "You find a magic book"
+	elsif choice.include?("vase")
+		puts "You don't see anything interesting"
+	else
+		die("unable to understand")
+	end
+end
+
+def die(reason)
+	puts reason
+	exit(1)
+end
+
+room
+
+=end
+
+# ex37 symbol review
+=begin
+puts "BEGIN - Run this block when the script starts. - BEGIN {puts 'hi'}"
+puts "END - Run this block when the script is done. - END {puts 'bye'}"
+puts "alias - Create another name for a function. - alias X Y"
+puts "and - logical and, but lower priority than && - puts 'Hello' and 'goodbye'"
+puts "begin - Start a block, usually for exceptions. - begin end"
+puts "break - Break out of a loop right now. - while true; break; end"
+puts "case - Case style conditional, like an if - case X; when Y; else; end"
+puts "class - Define a new class. - class X; end"
+puts "def - Define a new function - def X(); end"
+puts "defined? - is this class/function/etc. defined already? - defined? Class == 'constant'"
+puts "do - Create a block that maybe takes a parameter - (0..5.each do |x| puts x end)"
+puts "end - Ends blocks, functions, classes, everything - begin end"
+puts "ensure - Run this code whether an exception happens or not - begin ensure end"
+puts "module - Define a new module - module X; end"
+puts "next - Skip to the next element of a .each iterator - (0..5).each {|y| next}"
+puts "redo - Rerun a code block exactly the same - (0..5).each {|i| redo if i > 2}"
+puts "rescue - Run this code if an exception happens - begin rescue X; end"
+puts "retry - In a rescue clause, says to try the block again. - (0..5).each {|i| retry if i > 2}"
+puts "return - Returns a value from a function. - return X"
+puts "self - The current object, class, or module. - defined? self == 'self'"
+puts "super - The parent class of this class - super"
+puts "then - Can be used with if optionally - if true then puts 'hi' end"
+puts "undef - Remove a function defined from a class - undef X"
+puts "until - Inverse of while, execute a block as long as false - until false; end"
+puts "when - Part of case conditionals - case X; when Y; else; end"
+puts "yield - Pause and transfer control to the code block - yield"
+
+puts "nil - Represents nothing 'null' - x = nil"
+puts "hashes - Stores a key=value mapping of things. - e = {'x' => 1, 'y' => 2}"
+
+puts ". - Dot access - '1'.to_i == 1"
+puts ":: - Colon access - Module::Class"
+puts "! - not - !true == false"
+puts "== - Equal - 4 == 4 == true"
+puts "=== - Equality - 4 === 4 == true"
+puts ".. - range inclusive - (0..3).to_a == [0,1,2,3]"
+puts "... - range non-inclusive - (0...3).to_a == [0,1,2]"
+puts "@ - Object scope - @var ; @@classvar"
+puts "@@ - Class scope - @var ; @@classvar"
+puts "$ - Global scope - $stdin"
+
+=end
+
+# ex38 more with arrays
+
+ten_things = "Apples Oranges Crows Telephone Light Sugar"
+
+puts "Wait, there are not 10 things in there. Fixing..."
+stuff = ten_things.split(' ')
+more_stuff = ["day", "night", "song", "frisbee", "corn", "banana", "girl", "boy"]
+
+while stuff.length != 10
+	next_one = more_stuff.pop
+	puts "Adding: #{next_one}"
+	stuff.push(next_one)
+	puts "there are #{stuff.length} items"
+end
+
+puts "Now we have it!: #{stuff}"
+puts stuff[1]
+puts stuff[-1] #what?
+puts stuff.pop()
+puts stuff.join(' ')
+puts stuff[3..5].join("#")
