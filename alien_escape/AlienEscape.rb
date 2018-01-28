@@ -22,7 +22,7 @@ class AlienEscape
 		puts WorldText.text("game master", "game intro")
 		puts WorldText.text("game master", "intro")
 		puts WorldText.text("bathroom", "first entry")
-		PlayerInput.loop(player)
+		PlayerInput.loop(player, map)
 
 	end
 

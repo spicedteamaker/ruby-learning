@@ -12,4 +12,8 @@ class Player
 		return @player_location
 	end
 
+	def set_location(room)
+		@player_location = room
+	end
+
 end

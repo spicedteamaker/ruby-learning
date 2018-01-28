@@ -6,6 +6,8 @@ module WorldText
 			game_master_text(action)
 		when "bathroom"
 			bathroom_text(action)
+		when "crew quarters"
+			crew_quarters_text(action)
 		else
 			puts "ERROR: Invalid text type passed"
 			exit(1)
@@ -22,7 +24,13 @@ module WorldText
 				"Your shower has just finished, you look into the mirror and let out a\nsigh of relief. Another long day down in Engineering. Peterson was\ngetting onto you about some numbers, but now you can relax, get\nyour book out, and think about home. About Earth. Claire is only a\nfew billion kilometers from you, it isn't so bad. You let out a\nsmall chuckle, imagining to yourself how far away that really is.",
 
 				"leave bathroom event" =>
-				"*BANG* You take your hand off the knob and take a step back.\n'SOMEBODY! HELP ME!'\nThat's Peterson's voice! You try to open\nthe door, but something is blocking it. A gutteral clicking is\nheard, something is out there with him."
+				"*BANG* You take your hand off the knob and take a step back.\n'SOMEBODY! HELP ME!'\nThat's Peterson's voice! You try to open\nthe door, but something is blocking it. A gutteral clicking is\nheard, there's something out there with him!",
+
+				"bathroom leave fail" =>
+				"It's no use, you're going to have to kick it down!",
+
+				"crew quarters peterson event" =>
+				"'Help me! please! it's got me!' \nWhat is this thing?! Peterson is being attacked by some..alien, insectoid\ncreature! There is a constant, erratic clicking, and the giant insect has\none of its apendages sticking into Peterson's leg, his blood\ncoating the floor below."
 		}
 
 		puts "_"
@@ -51,6 +59,14 @@ module WorldText
 
 			"leave" =>
 			"You open the door and walk out."
+		}
+		puts "_"
+		return text[action]
+	end
+
+	def WorldText.crew_quarters_text(action)
+		text = {
+
 		}
 		puts "_"
 		return text[action]

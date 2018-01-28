@@ -2,9 +2,13 @@ require "./WorldText.rb"
 
 module PlayerInput
 	@BATHROOM_EVENT = true
+	@DOOR_KICKED = false
+	@PETERSON_SCREAMED = false
+	@PETERSON_SEEN = false
 
-	def PlayerInput.loop(player)
+	def PlayerInput.loop(player, map)
 		@player = player
+		@map = map
 		input = " "
 		while true
 			print "> "
@@ -58,14 +62,37 @@ module PlayerInput
 		else
 			puts WorldText.text(location, action)
 		end
+
+		check_room_change(action)
+		puts @player.get_location.get_room_name
 	end
 
-	#manually overriden events
+	# manually overriden events
 	def PlayerInput.check_event(action)
-		#scripted leave bathroom event
-		if (action.eql? "leave") && (@BATHROOM_EVENT)
-			@BATHROOM_EVENT = false
+		# scripted leave bathroom event, player must kick door down
+		if (action.eql? "leave") && (!@DOOR_KICKED) && (!@PETERSON_SCREAMED)
+			@PETERSON_SCREAMED = true
 			return WorldText.text("game master", "leave bathroom event")
+		elsif (action.eql? "leave") && (!@DOOR_KICKED) && (@PETERSON_SCREAMED)
+			return WorldText.text("game master", "bathroom leave fail")
+		end
+	end
+
+	def PlayerInput.check_room_change(action)
+
+		case @player.get_location.get_room_name.downcase
+			#bathroom room change events
+		when "bathroom"
+			if (action.eql? "leave") && (@DOOR_KICKED)
+				@player.set_location(@map["crew quarters"])
+			elsif (action.eql? "kick door") && (!@DOOR_KICKED)
+				@DOOR_KICKED = true
+				@player.set_location(@map["crew quarters"])
+				# scripted event when player kicks the door down and sees peterson
+				puts WorldText.text("game master", "crew quarters peterson event")
+			end
+		else
+			puts "no room change"
 		end
 	end
 end
