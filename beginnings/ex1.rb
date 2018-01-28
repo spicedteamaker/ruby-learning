@@ -790,3 +790,69 @@ more_fruits = FruitsClass.new({"best_fruit" => "banana"})
 # Now let's grab the variable
 puts more_fruits.best_fruit # >>> banana
 =end
+
+# ex 42 inheritance
+=begin
+# parent class
+class Animal
+
+	def say_hello
+		"Hello!"
+	end
+	def list_paws
+		4
+	end
+
+end
+
+#class that inherits its parent
+class Dog < Animal
+def set_animal_type
+	"mammal"
+end
+	# creating a method exactly like its parent, but look what we can do
+	def say_hello
+		# super goes up one branch in inheritance.
+		super + " I'm a dog!"
+	end
+
+end
+
+class Cat < Animal
+	def say_hello
+		# This overrides its parent definition, and we don't include super
+		"Meoww. (I can't speak english)"
+	end
+end
+
+jo = Dog.new()
+puts jo.say_hello # >>> Hello! I'm a dog!
+mittens = Cat.new()
+puts mittens.say_hello # >>> Meoww. (I can't speak english)
+
+puts jo.list_paws # >>> 4
+
+# Let's have a child class of Dog as well
+class Dalmatian < Dog
+	def initialize(name, age)
+		@name = name
+		@age = age
+		@animal_type = set_animal_type
+	end
+
+	def set_animal_type
+		# The use of super() within a method searches for the same method up
+		# the hiearchy, and then invokes it
+		super()
+	end
+	attr_reader :name
+	attr_reader :age
+	attr_reader :animal_type
+end
+
+spot = Dalmatian.new("spot", 7)
+puts spot.age
+puts spot.list_paws
+puts spot.animal_type
+
+=end
