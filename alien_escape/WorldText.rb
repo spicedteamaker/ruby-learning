@@ -30,7 +30,16 @@ module WorldText
 				"It's no use, you're going to have to kick it down!",
 
 				"crew quarters peterson event" =>
-				"'Help me! please! it's got me!' \nWhat is this thing?! Peterson is being attacked by some..alien, insectoid\ncreature! There is a constant, erratic clicking, and the giant insect has\none of its apendages sticking into Peterson's leg, his blood\ncoating the floor below."
+				"'Help me! please! it's got me!' \nWhat is this thing?! Peterson is being attacked by some..alien, insectoid\ncreature! There is a constant, erratic clicking, and the giant insect has\none of its apendages sticking into Peterson's leg, his blood\ncoating the floor below.",
+
+				"help peterson event" =>
+				"You grab a nearby wrench, intent on smashing whatever that disgusting\nbug is. But before you could make any attempt to save\nPeterson, the giant insect jumps through the ceiling, taking\nPeterson with it! Good God, there's blood everywhere. . .",
+
+				"help peterson event attempt" =>
+				"Peterson can't be helped anymore, that...thing...took him somewhere.",
+
+				"crew quarters after peterson" =>
+				"With the insect gone, now might be a good time to take a breather and\nget your bearing straight. You're in the crew quarters, there are\nbunk beds lining the walls, and footlockers against each of them,\nyours in particular is a shaded green. The other engineers\naren't anywhere to be found, just what the hell is going on\nhere?"
 		}
 
 		puts "_"

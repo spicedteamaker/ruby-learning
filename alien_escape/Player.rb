@@ -1,7 +1,10 @@
+require "./Inventory.rb"
+
 class Player
 	def initialize(player_name, player_location)
 		@player_name = player_name
 		@player_location = player_location
+		@player_inventory = Inventory.new
 	end
 
 	def get_player_name
@@ -14,6 +17,10 @@ class Player
 
 	def set_location(room)
 		@player_location = room
+	end
+
+	def inventory
+		return @player_inventory
 	end
 
 end

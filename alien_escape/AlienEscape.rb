@@ -22,7 +22,7 @@ class AlienEscape
 		puts WorldText.text("game master", "game intro")
 		puts WorldText.text("game master", "intro")
 		puts WorldText.text("bathroom", "first entry")
-		PlayerInput.loop(player, map)
+		PlayerInput.loop(player, map, map_items)
 
 	end
 
@@ -119,13 +119,13 @@ class AlienEscape
 			"armory key" => Key.new("armory key"),
 			"kitchen key" => Key.new("kitchen key"),
 			"main engine door control card" => Key.new("main engine door control card"),
-			"Phil's laser pistol" => Weapon.new("Phil's laser pistol"),
-			"laser rifle" => Weapon.new("laser rifle"),
-			"handy wrench" => Weapon.new("handy wrench"),
-			"Macie's knife of butchery" => Weapon.new("Macie's knife of butchery"),
-			"small hammer" => Weapon.new("small hammer"),
-			"Explode-O-Matic 6000" => Weapon.new("Explode-O-Matic 6000"),
-			"toy Explode-O-Matic 6000" => Weapon.new("toy Explode-O-Matic 6000"),
+			"Phil's laser pistol" => Weapon.new("Phil's laser pistol", 20),
+			"laser rifle" => Weapon.new("laser rifle", 25),
+			"handy wrench" => Weapon.new("handy wrench", 5),
+			"Macie's knife of butchery" => Weapon.new("Macie's knife of butchery", 15),
+			"small hammer" => Weapon.new("small hammer", 5),
+			"Explode-O-Matic 6000" => Weapon.new("Explode-O-Matic 6000", 50),
+			"toy Explode-O-Matic 6000" => Weapon.new("toy Explode-O-Matic 6000", 1),
 			"military-grade suit" => Armor.new("military-grade suit"),
 			"space pajamas" => Armor.new("space pajamas"),
 			"hazmat suit" => Armor.new("hazmat suit")}
