@@ -6,6 +6,7 @@ require "./Door.rb"
 require "./Armor.rb"
 require "./PlayerInput.rb"
 require "./WorldText.rb"
+require "./Tool.rb"
 
 class AlienEscape
 
@@ -128,7 +129,8 @@ class AlienEscape
 			"toy Explode-O-Matic 6000" => Weapon.new("toy Explode-O-Matic 6000", 1),
 			"military-grade suit" => Armor.new("military-grade suit"),
 			"space pajamas" => Armor.new("space pajamas"),
-			"hazmat suit" => Armor.new("hazmat suit")}
+			"hazmat suit" => Armor.new("hazmat suit"),
+			"map" => Tool.new("map")}
 
 		return map_items
 

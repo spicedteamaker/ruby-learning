@@ -1,4 +1,5 @@
 require "./WorldText.rb"
+require "./Dictionary.rb"
 
 module PlayerInput
 	# these are all global variables to check when we want a scripted event to occur
@@ -8,6 +9,7 @@ module PlayerInput
 	@PETERSON_SCREAMED = false
 	@PETERSON_SEEN = false
 	@PETERSON_HELPED = false
+	@FOOTLOCKER_INSPECTED = false
 
 	def PlayerInput.loop(player, map, items)
 		@player = player
@@ -37,8 +39,7 @@ module PlayerInput
 	end
 
 	def PlayerInput.evaluate_input(input)
-		verbs = ["inspect", "wash", "flush", "exit", "kick", "enter", "go", "leave", "help", "equip"]
-		nouns = ["", "door", "mirror", "toilet", "sink", "hands", "peterson", "inventory"]
+		location = @player.get_location.get_room_name.downcase
 		input = input.downcase
 		input = input.split(' ')
 
@@ -51,11 +52,12 @@ module PlayerInput
 		end
 
 		if input.length.eql? 1
-			if verbs.include? input[0]
+			puts "input length is 1"
+			if Dictionary.check_verbs?(location, input[0])
 				parse_verb_and_noun(input, true)
 			else puts "_\nI don't want to do that"
 			end
-		elsif (verbs.include? input[0]) && (nouns.include? input[1]) then parse_verb_and_noun(input, false) else puts "_\nI don't want to do that." end
+		elsif (Dictionary.check_verbs?(location, input[0])) && (Dictionary.check_nouns?(location, input[1])) then parse_verb_and_noun(input, false) else puts "_\nI don't want to do that." end
 
 	end
 
@@ -100,13 +102,25 @@ module PlayerInput
 				return [nil]
 		end
 	when "crew quarters"
-		# tries to help peterson, but fails
+		# tries to help peterson, but fails, acquires the wrench item
 			if (action.eql? "help peterson") && (!@PETERSON_HELPED)
 				@PETERSON_HELPED = true
 				@player.inventory.loot_item(@items["handy wrench"])
 				return [WorldText.text("game master", "help peterson event"), WorldText.text("game master", "crew quarters after peterson")]
 			elsif (action.eql? "help peterson") && (@PETERSON_HELPED)
 				return [WorldText.text("game master", "help peterson event attempt")]
+				# player should probably help peterson, he's in danger
+			elsif (!action.eql? "help peterson") && (!@PETERSON_HELPED)
+				return [WorldText.text("crew quarters", "help peterson first")]
+				# gets the map item
+			elsif (action.eql? "inspect footlocker") && (!@FOOTLOCKER_INSPECTED)
+				@player.inventory.loot_item(@items["map"])
+				@FOOTLOCKER_INSPECTED = true
+				return [WorldText.text("crew quarters", "inspect footlocker first")]
+			elsif (action.eql? "inspect footlocker") && (@FOOTLOCKER_INSPECTED)
+				return [WorldText.text("crew quarters", "inspect footlocker multiple")]
+			else
+				return [nil]
 			end
 		else
 			return [nil]

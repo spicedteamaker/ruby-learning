@@ -76,6 +76,15 @@ module WorldText
 	def WorldText.crew_quarters_text(action)
 		text = {
 
+			"help peterson first" =>
+			"I need to help peterson first!",
+
+			"inspect footlocker first" =>
+			"You find your old ship map given to you during training. It seems so small when it's drawn up like this. You take the map and place it into your shirt pocket.",
+
+			"inspect footlocker multiple" =>
+			"The only thing left in there is some peanut butter and crackers, both of which would seem appetizing had today been normal"
+
 		}
 		puts "_"
 		return text[action]
