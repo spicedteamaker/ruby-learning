@@ -10,6 +10,7 @@ module PlayerInput
 	@PETERSON_SEEN = false
 	@PETERSON_HELPED = false
 	@FOOTLOCKER_INSPECTED = false
+	@HAS_MAP = false
 
 	def PlayerInput.loop(player, map, items)
 		@player = player
@@ -112,13 +113,16 @@ module PlayerInput
 				# player should probably help peterson, he's in danger
 			elsif (!action.eql? "help peterson") && (!@PETERSON_HELPED)
 				return [WorldText.text("crew quarters", "help peterson first")]
-				# gets the map item
+				# gets the map item, enables the use of seeing nearby rooms
 			elsif (action.eql? "inspect footlocker") && (!@FOOTLOCKER_INSPECTED)
 				@player.inventory.loot_item(@items["map"])
+				@HAS_MAP = true
 				@FOOTLOCKER_INSPECTED = true
 				return [WorldText.text("crew quarters", "inspect footlocker first")]
 			elsif (action.eql? "inspect footlocker") && (@FOOTLOCKER_INSPECTED)
 				return [WorldText.text("crew quarters", "inspect footlocker multiple")]
+			elsif (!action.eql? "inspect footlocker") && (!@HAS_MAP)
+				return [WorldText.text("crew quarters", "inspect footlocker hint")]
 			else
 				return [nil]
 			end
@@ -150,6 +154,15 @@ module PlayerInput
 			return "[help, inventory]"
 		elsif (command.eql? "inventory")
 			return @player.inventory.show_inventory
+		elsif (command.eql? "map")
+			nearby = @player.get_location.get_adjacent_rooms
+			nearby_parsed = ""
+			nearby.each do |room_number, adjacent|
+				nearby_parsed += adjacent.get_room_name.downcase
+				# TODO if there's only one room, remove the comma
+				nearby_parsed += ", "
+			end
+			return "The adjacent rooms are: #{nearby_parsed}"
 		else
 			return nil
 		end

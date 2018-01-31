@@ -83,7 +83,10 @@ module WorldText
 			"You find your old ship map given to you during training. It seems so small when it's drawn up like this. You take the map and place it into your shirt pocket.",
 
 			"inspect footlocker multiple" =>
-			"The only thing left in there is some peanut butter and crackers, both of which would seem appetizing had today been normal"
+			"The only thing left in there is some peanut butter and crackers, both of which would seem appetizing had today been normal",
+
+			"inspect footlocker hint" =>
+			"I should probably check my footlocker before heading out"
 
 		}
 		puts "_"
