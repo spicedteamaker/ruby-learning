@@ -1,4 +1,4 @@
-require "./Item.rb"
+require "./src/Item.rb"
 class Armor < Item
 
 	def initialize(name)

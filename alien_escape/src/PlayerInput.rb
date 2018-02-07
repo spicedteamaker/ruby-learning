@@ -1,5 +1,5 @@
-require "./WorldText.rb"
-require "./Dictionary.rb"
+require "./src/WorldText.rb"
+require "./src/Dictionary.rb"
 
 module PlayerInput
 	# these are all global variables to check when we want a scripted event to occur
@@ -155,12 +155,16 @@ module PlayerInput
 		elsif (command.eql? "inventory")
 			return @player.inventory.show_inventory
 		elsif (command.eql? "map")
-			nearby = @player.get_location.get_adjacent_rooms
-			nearby_parsed = ""
-			nearby.each do |room_number, adjacent|
-				nearby_parsed += adjacent.get_room_name.downcase
-				# TODO if there's only one room, remove the comma
-				nearby_parsed += ", "
+			if @HAS_MAP
+				nearby = @player.get_location.get_adjacent_rooms
+				nearby_parsed = ""
+				nearby.each do |room_number, adjacent|
+					nearby_parsed += adjacent.get_room_name.downcase
+					# TODO if there's only one room, remove the comma
+					nearby_parsed += ", "
+				end
+			else
+				return "I don't have a map yet."
 			end
 			return "The adjacent rooms are: #{nearby_parsed}"
 		else

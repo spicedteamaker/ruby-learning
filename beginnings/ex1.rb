@@ -856,3 +856,77 @@ puts spot.list_paws
 puts spot.animal_type
 
 =end
+
+# ex 44 more inheritance
+=begin
+# say child inherits the parent, everything the parent has, the child also has (unless overriden)
+
+class Parent
+	def what_type
+		return "i'm a parent!"
+	end
+
+	def animal_type
+		return "i'm a human!"
+	end
+end
+
+# child extends parent
+class Child < Parent
+	# we can override simply by creating same-name methods
+	def what_type
+		puts "I'm a child!"
+		# We can also call super to call the parent's method
+		puts "And the parent: #{super}"
+	end
+end
+
+child = Child.new
+puts child.what_type
+puts child.animal_type
+=end
+
+# ex 44.5 Composition
+
+=begin
+# instead of using direct inheritance, we can actually compose other classes
+
+class Composed
+	def scream
+		return "reeeeee"
+	end
+end
+
+class Child
+	def initialize
+		@composed = Composed.new
+	end
+
+		def scream
+			puts "child: oh no!"
+			puts "composed: #{@composed.scream}"
+		end
+end
+
+child = Child.new
+child.scream
+
+# we can just as easily use a module
+
+module NewComposedModule
+
+	def NewComposedModule.scream
+		return "reeee"
+	end
+end
+
+class NewChild
+	def scream
+		puts "child: oh no!"
+		puts "NewComposed: #{NewComposedModule.scream}"
+	end
+end
+
+new_child = NewChild.new
+new_child.scream
+=end

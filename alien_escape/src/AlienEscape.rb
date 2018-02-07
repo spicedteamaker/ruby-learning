@@ -1,12 +1,12 @@
-require "./Player.rb"
-require "./Weapon.rb"
-require "./Key.rb"
-require "./Room.rb"
-require "./Door.rb"
-require "./Armor.rb"
-require "./PlayerInput.rb"
-require "./WorldText.rb"
-require "./Tool.rb"
+require "./src/Player.rb"
+require "./src/Weapon.rb"
+require "./src/Key.rb"
+require "./src/Room.rb"
+require "./src/Door.rb"
+require "./src/Armor.rb"
+require "./src/PlayerInput.rb"
+require "./src/WorldText.rb"
+require "./src/Tool.rb"
 
 class AlienEscape
 

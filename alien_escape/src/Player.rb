@@ -1,4 +1,4 @@
-require "./Inventory.rb"
+require "./src/Inventory.rb"
 
 class Player
 	def initialize(player_name, player_location)
